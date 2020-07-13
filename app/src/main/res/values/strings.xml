@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ThirtyGame</string>
+
+    <string name="final_score_button">Final Score</string>
+    <string name="throw_button">Throw</string>
+    <string name="score_button">Score</string>
+    <string name="score_text_label">Score</string>
+    <string name="round_text_label">Round</string>
+    <string name="throws_text_label">Throws</string>
+    <string name="scoring_alternative_spinner">Pick a scoring alternative</string>
+
+    <string name="score_label">Your score is:</string>
+</resources>
