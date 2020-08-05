@@ -42,71 +42,87 @@ class Fours : IScoringAlternative {
 class Fives : IScoringAlternative {
     override val name = "Fives"
     override fun calculateScore(dices: Array<Die>): Int {
-        val sum = dices.map { d -> d.value }.sum()
-        val score = sum / 5
-        return score
+        val sum = sum(dices)
+        when (sum % 5) {
+            0 -> return sum
+            else -> return -1
+        }
     }
 }
 
 class Sixes : IScoringAlternative {
     override val name = "Sixes"
     override fun calculateScore(dices: Array<Die>): Int {
-        val sum = dices.map { d -> d.value }.sum()
-        val score = sum / 6
-        return score
+        val sum = sum(dices)
+        when (sum % 6) {
+            0 -> return sum
+            else -> return -1
+        }
     }
 }
 
 class Sevens : IScoringAlternative {
     override val name = "Sevens"
     override fun calculateScore(dices: Array<Die>): Int {
-        val sum = dices.map { d -> d.value }.sum()
-        val score = sum / 7
-        return score
+        val sum = sum(dices)
+        when (sum % 7) {
+            0 -> return sum
+            else -> return -1
+        }
     }
 }
 
 class Eights : IScoringAlternative {
     override val name = "Eights"
     override fun calculateScore(dices: Array<Die>): Int {
-        val sum = dices.map { d -> d.value }.sum()
-        val score = sum / 8
-        return score
+        val sum = sum(dices)
+        when (sum % 8) {
+            0 -> return sum
+            else -> return -1
+        }
     }
 }
 
 class Nines : IScoringAlternative {
     override val name = "Nines"
     override fun calculateScore(dices: Array<Die>): Int {
-        val sum = dices.map { d -> d.value }.sum()
-        val score = sum / 9
-        return score
+        val sum = sum(dices)
+        when (sum % 9) {
+            0 -> return sum
+            else -> return -1
+        }
     }
 }
 
 class Tens : IScoringAlternative {
     override val name = "Tens"
     override fun calculateScore(dices: Array<Die>): Int {
-        val sum = dices.map { d -> d.value }.sum()
-        val score = sum / 10
-        return score
+        val sum = sum(dices)
+        when (sum % 10) {
+            0 -> return sum
+            else -> return -1
+        }
     }
 }
 
 class Elevens : IScoringAlternative {
     override val name = "Elevens"
     override fun calculateScore(dices: Array<Die>): Int {
-        val sum = dices.map { d -> d.value }.sum()
-        val score = sum / 11
-        return score
+        val sum = sum(dices)
+        when (sum % 11) {
+            0 -> return sum
+            else -> return -1
+        }
     }
 }
 
 class Twelves : IScoringAlternative {
     override val name = "Twelves"
     override fun calculateScore(dices: Array<Die>): Int {
-        val sum = dices.map { d -> d.value }.sum()
-        val score = sum / 12
-        return score
+        val sum = sum(dices)
+        when (sum % 12) {
+            0 -> return sum
+            else -> return -1
+        }
     }
 }
