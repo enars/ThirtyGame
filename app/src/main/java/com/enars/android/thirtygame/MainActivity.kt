@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import android.util.Log
 
 private const val TAG = "MainActivity"
-private const val ROUNDS_PER_GAME = 9
+private const val ROUNDS_PER_GAME = 10
 private const val THROWS_PER_ROUND = 3
 
 class MainActivity : AppCompatActivity() {
@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun scoreRound() {
         // Game is over
-        if ((tgViewModel.rounds.size) == ROUNDS_PER_GAME)
+        if ((tgViewModel.rounds.size + 1) == ROUNDS_PER_GAME)
             scoreGame()
         else {
             // Start next round
