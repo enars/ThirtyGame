@@ -74,6 +74,10 @@ class ThirtyGameViewModel : ViewModel() {
         return availableAlternatives
     }
 
+    /**
+     * If no dies are selected, return empty. Otherwise check if scoring with current choices
+     * is valid or invalid
+     */
     fun checkValidScore(selectedAlternative: String): String {
         val dies = getToggledDies()
         if (dies.size == 0)
@@ -84,6 +88,7 @@ class ThirtyGameViewModel : ViewModel() {
             else -> return "valid"
         }
     }
+
     /**
      * Create and add the new round to the rounds array.
      * Add chosen scoring alternative to used alternatives list
