@@ -14,15 +14,6 @@ interface IScoringAlternative {
         return dices.map {d -> d.value}.reduce { acc, v -> acc + v} }
 }
 
-/**
- * TODO: Change ScoreCount in each Scoring alternative to its own function
- *       Each Function should take a number of dices depending on user choice
- *       and return a score sum if valid and a -1 if invalid, alerting the player
- *       Lows -> every selected dice is 3 or lower -> return sum
- *       Fours - Twelves -> every selected dice amounts to modulus 0 -> return sum
- *
- */
-
 class Lows : IScoringAlternative {
     override val name = "Lows"
     override val value = 3
