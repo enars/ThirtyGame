@@ -31,8 +31,7 @@ class Lows : IScoringAlternative {
 class Fours : IScoringAlternative {
     override val name = "Fours"
     override fun calculateScore(dices: Array<Die>): Int {
-        val sum = dices.map {d -> d.value}
-                            .reduce { acc, v -> acc + v}
+        val sum = sum(dices)
         when (sum % 4 ) {
             0 -> return sum
             else -> return -1
