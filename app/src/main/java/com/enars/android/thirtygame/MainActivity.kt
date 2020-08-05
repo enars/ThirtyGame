@@ -98,13 +98,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        //START GAME
         //Do not throw dice on every onCreate, only when the game begins
         if (tgViewModel.rounds.size == 0 && tgViewModel.throws == 0)
             nextThrow()
         else {
-            updateButtonText()
             updateDiceImages()
-            updateTextViews()
+            updateScreenTexts()
         }
     }
 
@@ -115,9 +115,8 @@ class MainActivity : AppCompatActivity() {
         tgViewModel.throws++
         tgViewModel.throwDies()
 
-        updateButtonText()
         updateDiceImages()
-        updateTextViews()
+        updateScreenTexts()
     }
 
     /**
@@ -150,13 +149,9 @@ class MainActivity : AppCompatActivity() {
      * Get dies from models, map dies with respective onscreen imageButton, call set images
      */
     private fun updateDiceImages() {
-        val dies = tgViewModel.dies
-
-        val map: Map<ImageButton, Die> = dieButtons
-            .zip(dies)
+        dieButtons.zip(tgViewModel.dies)
             .toMap()
-
-        map.forEach { (image, die) -> setDieImage(image, die) }
+            .forEach { (image, die) -> setDieImage(image, die) }
     }
 
     /**
@@ -172,16 +167,10 @@ class MainActivity : AppCompatActivity() {
         diceButton.setImageResource(imageResId)
     }
 
-    private fun updateTextViews() {
+    private fun updateScreenTexts() {
         scoreTextView.setText("" + tgViewModel.score)
         throwsTextView.setText("" + tgViewModel.throws)
         roundTextView.setText("" + (tgViewModel.rounds.size + 1))
-    }
-
-    /**
-     * Update button text
-     */
-    private fun updateButtonText() {
         when {
             tgViewModel.throws == THROWS_PER_ROUND -> throwButton.setText(R.string.score_button)
             else -> throwButton.setText(R.string.throw_button)
