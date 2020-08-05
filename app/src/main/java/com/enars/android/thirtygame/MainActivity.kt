@@ -39,6 +39,9 @@ class MainActivity : AppCompatActivity() {
         ViewModelProviders.of(this).get(ThirtyGameViewModel::class.java)
     }
 
+    /**
+     * TODO: SaveInstanceState: Reload all component state and stuff when the app is destroyed
+     */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -123,7 +126,7 @@ class MainActivity : AppCompatActivity() {
     private fun scoreRound() {
         // Game is over
         if ((tgViewModel.rounds.size) == ROUNDS_PER_GAME)
-            score()
+            scoreGame()
         else {
             // Start next round
             tgViewModel.addRound(altSpinner.selectedItem.toString())
@@ -137,7 +140,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Send user to score activity to display the final score
      */
-    private fun score() {
+    private fun scoreGame() {
         val finalScore = tgViewModel.score
         val intent: Intent = FinalScoreActivity.newIntent(this@MainActivity, finalScore)
         startActivity(intent)
