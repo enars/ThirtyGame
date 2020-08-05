@@ -11,6 +11,7 @@ import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import android.util.Log
+import android.view.Gravity
 
 private const val TAG = "MainActivity"
 private const val ROUNDS_PER_GAME = 10
@@ -130,8 +131,8 @@ class MainActivity : AppCompatActivity() {
             val selectedSA = altSpinner.selectedItem.toString()
             val scoringCheck = tgViewModel.checkValidScore(selectedSA)
             when (scoringCheck) {
-                "empty" -> return //alert
-                "invalid" -> return //alert
+                "empty" -> createToast(R.string.empty_selection_toast)
+                "invalid" -> createToast(R.string.invalid_toast)
                 "valid" ->  {
                     //Start Next Round
                     tgViewModel.addRound(selectedSA)
@@ -205,5 +206,11 @@ class MainActivity : AppCompatActivity() {
         val namesArrayList = namesList.toCollection(ArrayList())
 
         return namesArrayList
+    }
+
+    private fun createToast(toastMessage: Int) {
+        val toast = Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.TOP, 0,0)
+        toast.show()
     }
 }
