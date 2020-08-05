@@ -48,6 +48,10 @@ class ThirtyGameViewModel : ViewModel() {
         dies.forEach { die -> die.isSaved = false }
     }
 
+    fun getToggledDies(): Array<Die> {
+        return dies.filter { die -> die.isSaved }.toTypedArray()
+    }
+
     fun getScoringAlternativeByName(name: String): IScoringAlternative {
        return scoringAlternatives.filter { sa -> sa.name == name }.first()
     }
@@ -55,7 +59,7 @@ class ThirtyGameViewModel : ViewModel() {
     /**
      * Filter out all already chosen alternatives and return "available" scoring options by:
      *  - Group all common items between used alternatives and all alternatives lists
-     *  - Save all single options (1 occurence)
+     *  - Save all single options (1 occurrence)
      *  - Flatten remaining scoring alternatives into a single list
      *  - Return
      */
@@ -70,6 +74,16 @@ class ThirtyGameViewModel : ViewModel() {
         return availableAlternatives
     }
 
+    fun checkValidScore(selectedAlternative: String): String {
+        val dies = getToggledDies()
+        if (dies.size == 0)
+            return "empty"
+        val scoreAlternative = getScoringAlternativeByName(selectedAlternative)
+        when (scoreAlternative.calculateScore(dies)) {
+            -1 -> return "invalid"
+            else -> return "valid"
+        }
+    }
     /**
      * Create and add the new round to the rounds array.
      * Add chosen scoring alternative to used alternatives list
@@ -77,13 +91,11 @@ class ThirtyGameViewModel : ViewModel() {
      */
     fun addRound(selectedAlternative: String) {
         val scoreAlternative = getScoringAlternativeByName(selectedAlternative)
-        val saveRound = Round(dies, scoreAlternative)
+        val saveRound = Round(getToggledDies(), scoreAlternative)
         val newRounds = rounds + saveRound
         rounds = newRounds
 
         //usedAlternatives.add(scoreAlternative)
         score += scoreAlternative.calculateScore(saveRound.dices)
     }
-
-
 }

@@ -120,19 +120,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Check if game is over, otherwise start next round
+     * Check if game is over, otherwise check scoring and start next round
      */
     private fun scoreRound() {
-        // Game is over
+        // Check game over
         if ((tgViewModel.rounds.size + 1) == ROUNDS_PER_GAME)
             scoreGame()
         else {
-            // Start next round
-            tgViewModel.addRound(altSpinner.selectedItem.toString())
-            tgViewModel.throws = 0
-            tgViewModel.unToggleAllDies()
-            updateSpinner()
-            nextThrow()
+            val selectedSA = altSpinner.selectedItem.toString()
+            val scoringCheck = tgViewModel.checkValidScore(selectedSA)
+            when (scoringCheck) {
+                "empty" -> return //alert
+                "invalid" -> return //alert
+                "valid" ->  {
+                    //Start Next Round
+                    tgViewModel.addRound(selectedSA)
+                    tgViewModel.throws = 0
+                    tgViewModel.unToggleAllDies()
+                    updateSpinner()
+                    nextThrow()
+                }
+            }
         }
     }
 
@@ -167,6 +175,9 @@ class MainActivity : AppCompatActivity() {
         diceButton.setImageResource(imageResId)
     }
 
+    /**
+     * Update buttons and textviews text
+     */
     private fun updateScreenTexts() {
         scoreTextView.setText("" + tgViewModel.score)
         throwsTextView.setText("" + tgViewModel.throws)
