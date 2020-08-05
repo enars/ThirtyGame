@@ -2,7 +2,14 @@ package com.enars.android.thirtygame
 
 interface IScoringAlternative {
     val name: String
-    fun calculateScore(dices: Array<Die>): Int
+    val value: Int
+    fun calculateScore(dices: Array<Die>): Int {
+        val sum = sum(dices)
+        when (sum % value ) {
+            0 -> return sum
+            else -> return -1
+        }
+    }
     fun sum(dices: Array<Die>): Int {
         return dices.map {d -> d.value}.reduce { acc, v -> acc + v} }
 }
@@ -18,6 +25,7 @@ interface IScoringAlternative {
 
 class Lows : IScoringAlternative {
     override val name = "Lows"
+    override val value = 3
     override fun calculateScore(dices: Array<Die>): Int {
         //var dices = dices.filter { d -> d.value <= 3 }
 
@@ -30,99 +38,45 @@ class Lows : IScoringAlternative {
 
 class Fours : IScoringAlternative {
     override val name = "Fours"
-    override fun calculateScore(dices: Array<Die>): Int {
-        val sum = sum(dices)
-        when (sum % 4 ) {
-            0 -> return sum
-            else -> return -1
-        }
-    }
+    override val value = 4
 }
 
 class Fives : IScoringAlternative {
     override val name = "Fives"
-    override fun calculateScore(dices: Array<Die>): Int {
-        val sum = sum(dices)
-        when (sum % 5) {
-            0 -> return sum
-            else -> return -1
-        }
-    }
+    override val value = 5
 }
 
 class Sixes : IScoringAlternative {
     override val name = "Sixes"
-    override fun calculateScore(dices: Array<Die>): Int {
-        val sum = sum(dices)
-        when (sum % 6) {
-            0 -> return sum
-            else -> return -1
-        }
-    }
+    override val value = 6
 }
 
 class Sevens : IScoringAlternative {
     override val name = "Sevens"
-    override fun calculateScore(dices: Array<Die>): Int {
-        val sum = sum(dices)
-        when (sum % 7) {
-            0 -> return sum
-            else -> return -1
-        }
-    }
+    override val value = 7
 }
 
 class Eights : IScoringAlternative {
     override val name = "Eights"
-    override fun calculateScore(dices: Array<Die>): Int {
-        val sum = sum(dices)
-        when (sum % 8) {
-            0 -> return sum
-            else -> return -1
-        }
-    }
+    override val value = 8
 }
 
 class Nines : IScoringAlternative {
     override val name = "Nines"
-    override fun calculateScore(dices: Array<Die>): Int {
-        val sum = sum(dices)
-        when (sum % 9) {
-            0 -> return sum
-            else -> return -1
-        }
-    }
+    override val value = 9
 }
 
 class Tens : IScoringAlternative {
     override val name = "Tens"
-    override fun calculateScore(dices: Array<Die>): Int {
-        val sum = sum(dices)
-        when (sum % 10) {
-            0 -> return sum
-            else -> return -1
-        }
-    }
+    override val value = 10
 }
 
 class Elevens : IScoringAlternative {
     override val name = "Elevens"
-    override fun calculateScore(dices: Array<Die>): Int {
-        val sum = sum(dices)
-        when (sum % 11) {
-            0 -> return sum
-            else -> return -1
-        }
-    }
+    override val value = 11
 }
 
 class Twelves : IScoringAlternative {
     override val name = "Twelves"
-    override fun calculateScore(dices: Array<Die>): Int {
-        val sum = sum(dices)
-        when (sum % 12) {
-            0 -> return sum
-            else -> return -1
-        }
-    }
+    override val value = 12
 }
