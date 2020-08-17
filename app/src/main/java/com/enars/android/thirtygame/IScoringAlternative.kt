@@ -17,7 +17,8 @@ interface IScoringAlternative {
         }
     }
     fun sum(dices: Array<Die>): Int {
-        return dices.map {d -> d.value}.reduce { acc, v -> acc + v} }
+        return dices.map {d -> d.value}
+            .reduce { acc, v -> acc + v} }
 }
 
 /**
@@ -28,9 +29,13 @@ class Lows : IScoringAlternative {
     override val name = "Lows"
     override val value = 3
     override fun calculateScore(dices: Array<Die>): Int {
-        return dices.map { die -> die.value }
-                    .filter { d -> d <= 3 }
-                    .reduce { acc, d -> acc + d }
+        val values = dices.map { die -> die.value }
+                    .filter { d -> d <= this.value }
+
+        when (values.size) {
+            0 -> return -1
+            else -> return values.reduce { acc, d -> acc + d }
+        }
     }
 }
 

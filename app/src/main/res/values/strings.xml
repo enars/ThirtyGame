@@ -8,6 +8,8 @@
     <string name="round_text_label">Round</string>
     <string name="throws_text_label">Throws</string>
     <string name="scoring_alternative_spinner">Pick a scoring alternative</string>
+    <string name="invalid_toast">Invalid scoring</string>
+    <string name="empty_selection_toast">Select scoring dies</string>
 
     <string name="score_label">Your score is:</string>
 </resources>
